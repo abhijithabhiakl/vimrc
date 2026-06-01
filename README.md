@@ -1,8 +1,8 @@
-# WIM — IDE-like Vim / Neovim Configuration
+# WIM : IDE-like Vim / Neovim Configuration
 
-> *Based on [wolandark/wim](https://github.com/wolandark/wim) — modernized 2025*
+> *Based on [wolandark/wim](https://github.com/wolandark/wim) - modernized 2025*
 
-WIM turns Vim or Neovim into a full-featured, IDE-like editor without abandoning the Vim philosophy. It layers LSP completion, fuzzy finding, a floating terminal, distraction-free writing, and a rich statusline on top of a carefully tuned set of core options — all in a single, well-commented `.vimrc`.
+WIM turns Vim or Neovim into a full-featured, IDE-like editor without abandoning the Vim philosophy. It layers LSP completion, fuzzy finding, a floating terminal, distraction-free writing, and a rich statusline on top of a carefully tuned set of core options - all in a single, well-commented `.vimrc`.
 
 ---
 
@@ -41,10 +41,10 @@ WIM turns Vim or Neovim into a full-featured, IDE-like editor without abandoning
 
 - Vim 8.1+ or Neovim 0.5+
 - `curl` (for bootstrapping vim-plug)
-- A [Nerd Font](https://www.nerdfonts.com/) — FiraCode Nerd Font is set by default
-- `figlet` and `boxes` — for the Startify ASCII banner
-- `ctags` — for Tagbar
-- Node.js — required by coc.nvim
+- A [Nerd Font](https://www.nerdfonts.com/) - FiraCode Nerd Font is set by default
+- `figlet` and `boxes` - for the Startify ASCII banner
+- `ctags` - for Tagbar
+- Node.js - required by coc.nvim
 - Optional: `ranger` or `vifm` for the floaterm file-manager shortcuts
 
 ---
@@ -60,7 +60,7 @@ cp ~/.config/nvim/init.vim ~/.config/nvim/init.vim.bak   # Neovim
 cp wim.vimrc ~/.vimrc             # Vim
 cp wim.vimrc ~/.config/nvim/init.vim   # Neovim
 
-# 3. Open Vim — vim-plug auto-installs itself, then installs all plugins
+# 3. Open Vim - vim-plug auto-installs itself, then installs all plugins
 vim
 ```
 
@@ -79,7 +79,7 @@ vim-plug is bootstrapped automatically on first launch via `curl`. After plugins
 | Editing | vim-eunuch | Shell commands: `:Rename` `:Move` `:Delete` `:Chmod` |
 | Editing | auto-pairs | Auto-close brackets, quotes, and parens |
 | Motion | vim-easymotion | Hop anywhere visible with a 2-keystroke label |
-| Motion | clever-f.vim | Smarter `f`/`t` — press again to repeat |
+| Motion | clever-f.vim | Smarter `f`/`t` - press again to repeat |
 | Fuzzy Find | fzf + fzf.vim | Files, buffers, history, colors, maps pickers |
 | Completion | coc.nvim | LSP client + popup completion engine |
 | Snippets | UltiSnips | Snippet engine |
@@ -113,7 +113,7 @@ vim-plug is bootstrapped automatically on first launch via `curl`. After plugins
 | `hidden` | on | Keep buffers alive when abandoned |
 | `autoread` | on | Auto-reload files changed on disk |
 | `autowrite` | on | Auto-write before `:make`, `:next`, etc. |
-| `noswapfile` | — | No swap files created |
+| `noswapfile` | - | No swap files created |
 | `undofile` | on | Persistent undo stored in `~/.vimhis` |
 | `undolevels` | 5000 | Up to 5000 undo steps per file |
 | `expandtab` | on | Tabs expand to spaces |
@@ -127,18 +127,18 @@ vim-plug is bootstrapped automatically on first launch via `curl`. After plugins
 | `whichwrap` | `<,>,h,l` | Arrow keys and `h`/`l` wrap across line ends |
 | `foldmethod` | indent | Indent-based folding |
 | `wildmode` | longest:full,full | Enhanced command-line completion cycling |
-| `path+=**` | — | Recursive file search for `:find` |
+| `path+=**` | - | Recursive file search for `:find` |
 | `clipboard` | unnamedplus,unnamed | Yank/paste synced with system clipboard |
 | `lazyredraw` | on | Don't redraw during macros (faster) |
-| `noerrorbells` / `novisualbell` | — | Completely silent |
+| `noerrorbells` / `novisualbell` | - | Completely silent |
 | `autochdir` | on | CWD follows the current file |
 | `updatetime` | 300 | Faster CursorHold (helps coc diagnostics) |
 | `cmdheight` | 2 | Taller command area for coc messages |
 | `conceallevel` | 0 | Never hide/conceal text |
 | `termbidi` | on | Bi-directional text (Arabic/Hebrew support) |
 | `guifont` | FiraCode Nerd Font 12 | GUI font |
-| `guicursor blinkon0` | — | Cursor blink disabled |
-| `BufReadPost` autocmd | — | Cursor returns to last position on file open |
+| `guicursor blinkon0` | - | Cursor blink disabled |
+| `BufReadPost` autocmd | - | Cursor returns to last position on file open |
 
 ---
 
@@ -150,7 +150,7 @@ vim-plug is bootstrapped automatically on first launch via `curl`. After plugins
 
 | Key | Mode | Action |
 |---|---|---|
-| `<Space>` | — | Leader key |
+| `<Space>` | - | Leader key |
 | `;` | Normal | Enter command mode (maps to `:`) |
 | `jj` | Insert | Escape to normal mode |
 | `<C-m>` | Normal | Jump to middle of current line |
@@ -315,13 +315,13 @@ Uses Powerline Nerd Font separators (``, ``, ``, ``). A custom `WordCount()` fun
 
 ### Tagbar
 
-- `autofocus` and `autoupdate` enabled — Tagbar focuses and refreshes automatically
+- `autofocus` and `autoupdate` enabled - Tagbar focuses and refreshes automatically
 - Custom ctags type for VimWiki headers via `~/vwtags.py`
 
 ### VimWiki
 
 - Wiki root: `~/vimwiki/`
-- `vimwiki_global_ext = 0` — VimWiki only applies to files inside its root, not all `.wiki` files
+- `vimwiki_global_ext = 0` - VimWiki only applies to files inside its root, not all `.wiki` files
 
 ### clever-f
 
@@ -366,8 +366,8 @@ These expand automatically in insert mode:
 
 **Also available (not active by default):**
 
-- `catppuccin` — swap in with `:colorscheme catppuccin_mocha` (or any catppuccin variant)
-- Any other `base16-*` scheme from the base16-vim collection — browse them with `<leader>c`
+- `catppuccin` - swap in with `:colorscheme catppuccin_mocha` (or any catppuccin variant)
+- Any other `base16-*` scheme from the base16-vim collection - browse them with `<leader>c`
 
 For Neovim, `nvim-colorizer.lua` renders inline color previews for hex and RGB values directly in the buffer.
 
