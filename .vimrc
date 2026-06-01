@@ -1,7 +1,7 @@
 " ╔══════════════════════════════════════════════════════════╗
 " ║                        W I M                             ║
 " ║          IDE-like Vim / Neovim Configuration             ║
-" ║      Based on wolandark/wim — modernized 2025            ║
+" ║      Based on wolandark/wim — modernized 2026            ║
 " ╚══════════════════════════════════════════════════════════╝
 "
 " https://github.com/wolandark/wim
