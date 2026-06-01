@@ -1,6 +1,6 @@
 # WIM : IDE-like Vim / Neovim Configuration
 
-> *Based on [wolandark/wim](https://github.com/wolandark/wim) - modernized 2025*
+> *Based on [wolandark/wim](https://github.com/wolandark/wim) - modernized 2026*
 
 WIM turns Vim or Neovim into a full-featured, IDE-like editor without abandoning the Vim philosophy. It layers LSP completion, fuzzy finding, a floating terminal, distraction-free writing, and a rich statusline on top of a carefully tuned set of core options - all in a single, well-commented `.vimrc`.
 
