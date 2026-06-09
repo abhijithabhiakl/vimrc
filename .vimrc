@@ -19,6 +19,11 @@
 "   - Terminal mappings improved
 "   - Netrw section deduplicated
 
+
+" set statusline+=\ Col:%c
+" set statusline+=\ Chars:%{wordcount().bytes}
+
+
 " ─────────────────────────────────────────────
 "  Bootstrap vim-plug
 " ─────────────────────────────────────────────
@@ -429,27 +434,123 @@ let g:clever_f_mark_char_color = 'StatuslineTermNC'
 " ─────────────────────────────────────────────
 "  Lightline
 " ─────────────────────────────────────────────
+
+" ─────────────────────────────────────────────
+"  Lightline
+" ─────────────────────────────────────────────
 function! WordCount() abort
-    let l:count = wordcount()
-    return l:count['words'] . ' words'
+    return wordcount()['words'] . 'w'
+endfunction
+
+function! CharCount() abort
+    let l:wc = wordcount()
+    if has_key(l:wc, 'visual_chars')
+        return l:wc['visual_chars'] . ' selected'
+    endif
+    return l:wc['chars'] . ' chars'
+endfunction
+
+function! GitBranch() abort
+    if !exists('*fugitive#head')
+        return ''
+    endif
+    let l:branch = fugitive#head()
+    return l:branch !=# '' ? "\ue0a0 " . l:branch : ''
+endfunction
+
+function! FileSize() abort
+    let l:bytes = getfsize(expand('%'))
+    if l:bytes < 0 | return '' | endif
+    if l:bytes < 1024 | return l:bytes . 'B' | endif
+    if l:bytes < 1048576 | return printf('%.1f', l:bytes / 1024.0) . 'K' | endif
+    return printf('%.1f', l:bytes / 1048576.0) . 'M'
+endfunction
+
+function! DateTime() abort
+    return strftime('%Y-%m-%d %H:%M:%S')
 endfunction
 
 let g:lightline = {
     \ 'colorscheme': 'powerline',
     \ 'active': {
-    \   'left':  [['mode'], ['readonly', 'absolutepath', 'modified']],
-    \   'right': [['lineinfo'], ['percent', 'wordcount'], ['filetype']],
+    \   'left':  [['mode'], ['gitbranch'], ['readonly', 'absolutepath', 'modified']],
+    \   'right': [['datetime'], ['lineinfo'], ['percent'], ['col'], ['charcount'], ['wordcount'], ['filesize'], ['filetype'], ['fileencoding']],
     \ },
     \ 'component_function': {
-    \   'wordcount': 'WordCount',
+    \   'wordcount':    'WordCount',
+    \   'charcount':    'CharCount',
+    \   'gitbranch':    'GitBranch',
+    \   'filesize':     'FileSize',
+    \   'datetime':     'DateTime',
     \ },
     \ 'component': {
-    \   'lineinfo': '%l/%L',
+    \   'lineinfo':     '%l/%L',
+    \   'col':          'Col:%c',
+    \   'fileencoding': '%{&fileencoding}',
     \ },
     \ }
 
 let g:lightline.separator    = { 'left': "\ue0b0", 'right': "\ue0b2" }
 let g:lightline.subseparator = { 'left': "\ue0b1", 'right': "\ue0b3" }
+
+augroup LightlineTimer
+    autocmd!
+    autocmd CursorHold,CursorHoldI * call lightline#update()
+augroup END
+
+
+" ─────────────────────────────────────────────
+"  Lightline
+
+"     return wordcount()['words'] . 'w'
+" endfunction
+
+" function! CharCount() abort
+"     return wordcount()['chars'] . ' chars'
+" endfunction
+
+" let g:lightline = {
+"     \ 'colorscheme': 'powerline',
+"     \ 'active': {
+"     \   'left':  [['mode'], ['readonly', 'absolutepath', 'modified']],
+"     \   'right': [['lineinfo'], ['percent'], ['col'], ['charcount'], ['wordcount'], ['filetype']],
+"     \ },
+"     \ 'component_function': {
+"     \   'wordcount': 'WordCount',
+"     \   'charcount': 'CharCount',
+"     \ },
+"     \ 'component': {
+"     \   'lineinfo': '%l/%L',
+"     \   'col':      'Col:%c',
+"     \ },
+"     \ }
+
+" let g:lightline.separator    = { 'left': "\ue0b0", 'right': "\ue0b2" }
+" let g:lightline.subseparator = { 'left': "\ue0b1", 'right': "\ue0b3" }
+
+
+
+
+" old-----------------------------------------
+"     return l:count['words'] . ' words'
+" endfunction
+
+" let g:lightline = {
+"     \ 'colorscheme': 'powerline',
+"     \ 'active': {
+"     \   'left':  [['mode'], ['readonly', 'absolutepath', 'modified']],
+"     \   'right': [['lineinfo'], ['percent', 'wordcount'], ['filetype']],
+"     \ },
+"     \ 'component_function': {
+"     \   'wordcount': 'WordCount',
+"     \ },
+"     \ 'component': {
+"     \   'lineinfo': '%l/%L',
+"     \ },
+"     \ }
+
+" let g:lightline.separator    = { 'left': "\ue0b0", 'right': "\ue0b2" }
+" let g:lightline.subseparator = { 'left': "\ue0b1", 'right': "\ue0b3" }
 
 " ─────────────────────────────────────────────
 "  Netrw
